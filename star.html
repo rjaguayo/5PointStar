@@ -1,0 +1,92 @@
+<html>
+<head>
+	<title>5 point star</title>
+</head>
+<body>
+	<canvas id="canvas" width="500" height="500"></canvas>
+	<script type="text/javascript">
+		(function(){
+			
+			var sin36 = 0.587785252;
+			var sin54 = 0.809016994;
+			var sin72 = 0.951056516;
+			var sin18 = 0.309016994;			
+
+			var plotPoint = function(x, y){
+				
+				var can = document.getElementById("canvas");
+				var ctx = can.getContext("2d");	
+
+				ctx.beginPath();
+				//context.arc(x,y,r,sAngle,eAngle,clockwise);
+				ctx.arc(x, y, 3, 0*Math.PI, 2*Math.PI);
+				//canvasLogic.ctx.strokeStyle = "#3515B0";
+				//canvasLogic.ctx.stroke();
+				ctx.fillStyle = "#66FF33";
+				ctx.fill();
+			};
+
+
+			var plotStar = function(centerx, centery, radius){
+				centerx = 250;
+				centery = 250;  
+				radius = 100;  //hard the values for now
+
+				var can = document.getElementById("canvas");
+				var ctx = can.getContext("2d");	
+				ctx.beginPath();
+				
+				var x1 = centerx;
+				var y1 = centery - radius;
+				ctx.moveTo(x1, y1);
+				
+				var x2 = centerx + ((radius / 2) * sin36);
+				var y2 = centery - ((radius / 2) * sin54);
+				ctx.lineTo(x2, y2);
+
+				var x3 = centerx + (radius * sin72);
+				var y3 = centery - (radius * sin18);
+				ctx.lineTo(x3, y3);
+
+				var x4 = centerx + ((radius / 2) * sin72);
+				var y4 = centery + ((radius / 2) * sin18);
+				ctx.lineTo(x4, y4);
+
+				var x5 = centerx + (radius * sin36);
+				var y5 = centery + (radius * sin54);
+				ctx.lineTo(x5, y5);
+
+				var x6 = centerx;
+				var y6 = centery + (radius / 2);
+
+				ctx.lineTo(x6, y6);
+
+				var x7 = centerx - (radius * sin36);
+				var y7 = centery + (radius * sin54);
+				ctx.lineTo(x7, y7);
+
+				var x8 = centerx - ((radius / 2) * sin72);
+				var y8 = centery + ((radius / 2) * sin18);
+				ctx.lineTo(x8, y8);
+
+				var x9 = centerx - (radius * sin72);
+				var y9 = centery - (radius * sin18);
+				ctx.lineTo(x9, y9);
+
+				var x10 = centerx - ((radius /2) * sin36);
+				var y10 = centery - ((radius /2) * sin54);
+				ctx.lineTo(x10, y10);
+				ctx.closePath();
+				//ctx.lineWidth=2;
+				ctx.fillStyle="#FF0000";
+				ctx.fill();
+
+			};
+
+			plotStar();
+
+
+		})()	
+	</script>
+</body>
+</html>
